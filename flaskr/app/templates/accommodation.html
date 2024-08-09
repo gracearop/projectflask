@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Accomodation{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="mt-4 da border mb-2" style="border-bottom: 1px solid #444; padding: 5px 5px;">
+  
+  <div style="float: left;">
+    <h2 class="da p-4 text-gray-700 font-bold" style="float: left;">Accomodation</h2>
+  </div>
+  <div class="relative" style="float: right;">
+    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center py-2 px-3 text-black border-b-2 border-transparent dark:text-black" style="border-color: #b8860b;">
+      Select session
+      <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+    </button>
+    <!-- Dropdown menu -->
+    <div id="dropdownNavbar" class="absolute mt-2 z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 right-0 top-full dark:bg-white dark:divide-gray-600" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+      <ul class="py-2 text-sm text-black" aria-labelledby="dropdownNavbarLink">
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2019/2020</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2020/2021</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2021/2022</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2022/2023</a>
+        </li>
+      </ul>
+    </div>
+    <!-- end of menu -->
+  </div>
+  <!-- end of button -->
+</div>
+
+<section class="flex justify-center min-h w-full">
+    <div class="w-[30%] m-2 max-w-sm p-4 bg-white text-gray-500 border shadow-lg rounded-lg sm:p-6 md:p-8" style="border: 1px solid #63490a; height: 50%;">
+       <!-- Profile Section -->
+       <div class="flex flex-col items-center pb-10">
+           <img class="w-50 h-20 mb-3 border-4 border-white" src="{{ g.user['profile_image'] }}" alt="Profile Image"/>
+       </div>
+   
+       <!-- Display Form Section -->
+       <form class="space-y-6">
+           <div>
+               <label for="student_name" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Name:</label>
+               <input type="text" name="student_name" id="student_name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_name'] }}" disabled />
+           </div>
+           <div>
+               <label for="matric_number" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Matric number:</label>
+               <input type="text" name="matric_number" id="matric_number" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['matric_number'] }}" disabled />
+           </div>
+           <div>
+               <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Phone:</label>
+               <input type="number" name="phone_number" id="phone_number" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['phone_number'] }}" disabled />
+           </div>
+           <div>
+               <label for="student_level" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Level:</label>
+               <input type="number" name="student_level" id="student_level" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_level'] }}" disabled />
+           </div>
+       </form>
+   </div>
+
+   <!-- <div class="w-[50%] h-12 flex items-center py-4 px-4 m-2 ml-20 mr-20 text-sm text-white rounded-lg" style="background-color: darkred;" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div class="m-auto">
+      <span class="font-medium">Please!</span> Select a session to proceed.
+    </div>
+  </div> -->
+   <div class="w-[50%] h-12 flex items-center py-4 px-4 m-2 ml-20 mr-20 text-sm text-white rounded-lg" style="background-color: darkred;" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3"><path d="M109-120q-11 0-20-5.5T75-140q-5-9-5.5-19.5T75-180l370-640q6-10 15.5-15t19.5-5q10 0 19.5 5t15.5 15l370 640q6 10 5.5 20.5T885-140q-5 9-14 14.5t-20 5.5H109Zm69-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm0-120q17 0 28.5-11.5T520-400v-120q0-17-11.5-28.5T480-560q-17 0-28.5 11.5T440-520v120q0 17 11.5 28.5T480-360Zm0-100Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div class="m-auto">
+      <span class="font-medium">You</span> are not eligible.
+    </div>
+  </div>
+  
+
+</section>   
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownToggle = document.getElementById('dropdownNavbarLink');
+      const dropdownMenu = document.getElementById('dropdownNavbar');
+  
+      dropdownToggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        dropdownMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
+      });
+  
+      document.addEventListener('click', function () {
+        dropdownMenu.classList.add('hidden'); // Close dropdown on click outside
+      });
+  
+      dropdownMenu.addEventListener('click', function (event) {
+        event.stopPropagation(); // Prevent dropdown from closing on menu click
+      });
+    });
+  </script>
+
+{% endblock %}

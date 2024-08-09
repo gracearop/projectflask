@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- <title>{% block title %}{% endblock %}Flaskr</title> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/secondScripts.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/biodata_template.js') }}" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style>
+        /* Custom styles to ensure the text color is white */
+        .text-white {
+            color: white;
+        }
+        /* Additional custom styles */
+        .border-white {
+            border-color: white;
+        }
+        .text{
+            font-size: 0.72rem;
+        }
+        .smallnav {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            transition: margin-left 0.3s ease;
+            /* margin-left: 256px; Initial margin to align with sidebar */
+        }
+        .sidebar-minimized .profile-section,
+        .sidebar-minimized .first-ul {
+            display: none;
+        }
+        .sidebar-minimized .sidebar {
+            width: 64px; /* Adjusted width for better visibility of icons */
+        }
+        .sidebar-minimized .sidebar a span.text {
+            display: none;
+        }
+        .sidebar-minimized .sidebar a span.icon {
+            display: inline-block;
+        }
+        .sidebar a {
+            transition: padding-left 0.3s ease;
+        }
+        .sidebar-minimized .sidebar a {
+            padding-left: 8px;
+        }
+        .sidebar-minimized ~ .content,
+        .sidebar-minimized ~ .smallnav {
+            margin-left: 64px; /* Adjust margin when sidebar is minimized */
+        }
+        .sidebar {
+            width: 256px; /* Initial width of the sidebar */
+        }
+        .content {
+            transition: margin-left 0.3s ease;
+            margin-left: 256px; /* Initial margin to align with sidebar */
+        }
+        .sidebar-minimized .smallnav .btn {
+            margin-left: 0;
+        }
+        /* for input display */
+        input[disabled] {
+            opacity: 1; /* Ensure full opacity */
+            }
+        .custom-divide > *:not(:last-child) {
+      border-bottom: 1px solid #b8860b;
+        }
+
+        .corner-boxes {
+        position: relative;
+        background-color: white;
+        padding: 20px;
+      }
+
+      .corner {
+        position: absolute;
+        width: 20px;
+        /* Size of the corner boxes */
+        height: 20px;
+        /* Size of the corner boxes */
+        background: white;
+      }
+
+      .top-left {
+        top: -10px;
+        left: -10px;
+      }
+
+      .top-right {
+        top: -10px;
+        right: -10px;
+      }
+
+      .bottom-left {
+        bottom: -10px;
+        left: -10px;
+      }
+
+      .bottom-right {
+        bottom: -10px;
+        right: -10px;
+      }
+    </style>
+</head>
+<body >
+    <main>
+        
+<!-- Sidebar -->
+<aside id="separator-sidebar" class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+    <div class="h-full px-3 py-4 overflow-y-auto sidebar"  style="background-color: #63490a; color: white;">
+        <!-- Profile Section -->        
+         <!-- First Part of Nav Bar (will be hidden when minimized) -->
+ 
+     <a href="{{ url_for('main.index',student_id=student_id)  }}">
+        <div class="profile-section pt-4 pb-4 space-y-2  border-b-2">
+            <ul class="flex text-white space-y-2  p-4 border-2 border-white rounded-lg mb-4">
+                <div class="w-1/2 flex justify-center items-center">
+                    <!-- Placeholder for the profile image. Replace with actual image from the database -->
+                    <img src="{{ g.user['profile_image'] }}" alt="Profile Image" class="h-16 w-16 rounded-full">
+                </div>
+                <div class="w-1/2 text">
+                    <p class="mb-2">Welcome back!</p>
+                    <li><span class="id">{{ g.user['matric_number'] }}</span></li>
+                    <p class="mt-2" id="date1"></p>
+                </div>
+            </ul>
+        </div>
+     </a>
+ 
+     
+ 
+        <!-- Second Part of Nav Bar -->
+        <ul class="space-y-2 font-medium pt-4 mb-4 pb-4 space-y-2">
+          <li>
+             <a href="{{ url_for('main.fees',student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">credit_card</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Fees</span>
+             </a>
+          </li>
+            <!-- More navigation links here -->
+            <li>
+             <a href="{{ url_for('main.otherFees', student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">receipt_long</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Other Fees</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.biodata', student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">database</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Bio data</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.courseReg', student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">school</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Course Registration</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.results', student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">history_edu</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">My Results</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.accommodation', student_id=student_id) }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">gite</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Accommodation</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.COP', student_id=student_id)  }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">change_circle</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">Change Programme</span>
+             </a>
+          </li>
+          <li>
+             <a href="{{ url_for('main.docs', student_id=student_id) }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                <span class="material-symbols-outlined icon">article</span>
+                <span class="flex-1 ms-3 whitespace-nowrap text">My documents</span>
+             </a>
+          </li>
+        </ul>
+ 
+        <!-- Last Part of Nav Bar -->
+        <ul class="pt-4 mt-4 space-y-2 font-medium border-t">
+            <li>
+                <a href="{{ url_for('main.settings', student_id=student_id) }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-black dark:hover:text-black hover:bg-white dark:hover:bg-white group">
+                    <span class="material-symbols-outlined icon">manage_accounts</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap text-white text">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+ </aside>
+ 
+ <!-- Main Content -->
+ <div class="content sm:ml-64">
+ <div class=" border-2 rounded-lg min-h-[1000px]"  style="color: white; border: 1px solid gray; box-shadow: #63490a;">
+        <!-- Your main content here -->
+         <!-- Small Navigation -->
+       <section class="smallnav w-full bg-white flex p-4 mb-4">
+           <div class="rounded btn">
+             <button onclick="toggleSidebar()" class="px-4 py-2 rounded text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                    <path d="M160-280q-17 0-28.5-11.5T120-320q0-17 11.5-28.5T160-360h480q17 0 28.5 11.5T680-320q0 17-11.5 28.5T640-280H160Zm0-160q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h480q17 0 28.5 11.5T680-480q0 17-11.5 28.5T640-440H160Zm0-160q-17 0-28.5-11.5T120-640q0-17 11.5-28.5T160-680h480q17 0 28.5 11.5T680-640q0 17-11.5 28.5T640-600H160Zm640 320q-17 0-28.5-11.5T760-320q0-17 11.5-28.5T800-360q17 0 28.5 11.5T840-320q0 17-11.5 28.5T800-280Zm0-160q-17 0-28.5-11.5T760-480q0-17 11.5-28.5T800-520q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440Zm0-160q-17 0-28.5-11.5T760-640q0-17 11.5-28.5T800-680q17 0 28.5 11.5T840-640q0 17-11.5 28.5T800-600Z"/>
+                </svg>
+            </button>
+           </div>
+    <div class="flex items-center">
+        {% if g.user %}
+            <p id="date"></p>
+            <a href="{{ url_for('auth.logout') }}" class="ml-4"><ion-icon name="power-sharp" class="logout-btn"></ion-icon></a>
+        {% else %}
+            <p>You are not logged in.</p>
+            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+        {% endif %}
+    </div>
+ </section>
+        {% block content %}
+
+        
+        {% endblock %}
+
+    </div>
+</div>
+
+<script>
+   // function toggleSidebar() {
+   //     const sidebar = document.getElementById('separator-sidebar');
+   //     sidebar.classList.toggle('sidebar-minimized');
+   // }
+   function toggleSidebar() {
+        const sidebar = document.getElementById('separator-sidebar');
+        const smallnav = document.querySelector('.smallnav');
+        const content = document.querySelector('.content');
+        sidebar.classList.toggle('sidebar-minimized');
+        smallnav.classList.toggle('sidebar-minimized');
+        content.classList.toggle('sidebar-minimized');
+    }
+</script>
+
+        <button id="recordBtn" class="mic-container">
+            <span class="material-symbols-outlined">mic</span>
+        </button>
+        <audio id="audioPlayback" controls style="display:none;"></audio>
+        <!-- <audio id="audioPlayback" controls></audio> -->
+    </main>
+</body>
+</html>

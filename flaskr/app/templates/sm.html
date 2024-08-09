@@ -1,0 +1,312 @@
+!pip install flask-ngrok
+from flask_ngrok import run_with_ngrok
+run_with_ngrok(app)
+app.run()
+
+
+
+import os
+from flask import Flask, request, jsonify, render_template
+
+def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        UPLOAD_FOLDER=os.path.join(app.instance_path, 'uploads')
+    )
+
+    if test_config is None:
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        app.config.from_mapping(test_config)
+
+    try:
+        os.makedirs(app.instance_path)
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    except OSError as e:
+        print(f"Error creating instance or upload folders: {e}")
+
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    @app.route('/upload_audio', methods=['POST'])
+    def upload_audio():
+        if 'audio' not in request.files:
+            return jsonify({'error': 'No audio file part'}), 400
+
+        file = request.files['audio']
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
+
+        if file:
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(filepath)
+            try:
+                transcription = send_audio_to_colab(filepath)
+                return jsonify({'message': 'File uploaded successfully', 'transcription': transcription}), 200
+            except Exception as e:
+                return jsonify({'error': str(e)}), 500
+
+    def send_audio_to_colab(audio_path):
+        import requests
+
+        url = "YOUR_NGROK_URL/transcribe"  # Replace with your ngrok URL
+        with open(audio_path, 'rb') as f:
+            files = {'audio': f}
+            response = requests.post(url, files=files)
+
+        if response.ok:
+            return response.json().get('transcription')
+        else:
+            response.raise_for_status()
+
+    from . import db
+    db.init_app(app)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
+
+    return app
+
+//for including image
+    @bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db().execute(
+            'SELECT id, matric_number, profile_image FROM student WHERE id = ?', (user_id,)
+        ).fetchone()
+        <!-- <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
+               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+            </a>
+         </li> -->
+
+
+         
+<!--  
+ <aside id="separator-sidebar" class=" fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   
+    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <ul class="pt-4  mb-4 pb-4 space-y-2 font-medium border-b-2 border-gray-200 dark:border-gray-700">
+        
+        
+         <!-- Profile Section -->
+         <div class="profile-section p-4 border-2 border-white rounded-lg mb-4">
+            <ul class="flex text-white space-y-2">
+                <div class="w-1/2 flex justify-center items-center">
+                    <!-- Placeholder for the profile image. Replace with actual image from the database -->
+                    <img src="{{ g.user['profile_image'] }}" alt="Profile Image" class="h-16 w-16 rounded-full">
+                </div>
+                <div class="w-1/2 text">
+                    <p class="mb-2">Welcome back!</p>
+                    <li><span class="id">{{ g.user['matric_number'] }}</span></li>
+                    <p class="mt-2" id="date1"></p>
+                </div>
+            </ul>
+        </div>
+<!-- End of first path of side nav bar -->
+       </ul>
+       
+<!-- Start of second part of nav bar -->
+      <ul class="space-y-2 font-medium">
+  
+         <li>
+            <a href="{{ url_for('fees') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               
+               <span class="material-symbols-outlined">credit_card</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Fees</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('otherFees') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">receipt_long</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Other Fees</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('biodata') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">database</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Bio data</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('courseReg') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">school</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Course Registration</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('results') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">history_edu</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">My Results</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('accommodation') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">gite</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Accommodation</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('COP') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">change_circle</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Change Programme</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ url_for('docs') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">article</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">My documents</span>
+            </a>
+         </li>
+
+
+
+      </ul>
+      <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+       <li>
+           <a href="{{ url_for('settings') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="material-symbols-outlined">manage_accounts</span>
+               <!-- <span class="material-symbols-outlined">settings</span> -->
+               <span class="flex-1 ms-3 whitespace-nowrap">settings</span>
+           </a>
+        </li>
+
+      </ul>
+   </div>
+</aside>
+
+<section class="smallnav fixed top-0 right-0 p-4 bg-white dark:bg-gray-800">
+  <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-white rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+     <span class="sr-only">Open sidebar</span>
+     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3"><path d="M360-256q-8 0-15-3t-13-9L148-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q6-6 13-9t15-3q16 0 28 11.5t12 29.5v366q0 18-12 29.5T360-256Zm-20-89v-270L205-480l135 135Zm260 89q-16 0-28-11.5T560-297v-366q0-18 12-29.5t28-11.5q8 0 15 3t13 9l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L628-268q-6 6-13 9t-15 3Z"/></svg>
+  </button>
+  {% if g.user %}
+      <p id="date"></p>
+
+    
+      <a href="{{ url_for('auth.logout') }}"><ion-icon name="power-sharp" class="logout-btn"></ion-icon></a>
+
+  {% else %}
+      <p>You are not logged in.</p>
+      <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+  {% endif %}
+</section>
+<!-- The other body of webpage -->
+<div class="p-4 sm:ml-64">
+  
+   <div class="mt-10 p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+  
+      </div>
+   </div>
+</div> -->
+
+
+outerHTML: <div class="d-flex flex-column pt-0 pb-0 mb-0 r-side col col-12" style="background-color: rgb(87, 67, 14); color: white; height: 25%; position: relative;"><div class="r-side-overlay pb-0 mb-0 d-flex flex-column" style="height: 100%;"><div class="text-center white--text" style="margin-top: 10%;"><h3>Federal University of Lafia</h3><p style="color: white !important;">Integrity, Innovation, Excellence</p></div><div class="mt-auto" style="width: 100%;"><div class="v-tabs v-tabs--centered v-tabs--icons-and-text theme--dark" style="color: white;"><div role="tablist" class="v-item-group theme--dark v-slide-group v-tabs-bar v-tabs-bar--is-mobile white--text transparent" data-booted="true" style="height: 40px;"><div class="v-slide-group__prev v-slide-group__prev--disabled"><!----></div><div class="v-slide-group__wrapper"><div class="v-slide-group__content v-tabs-bar__content"><div tabindex="0" aria-selected="true" role="tab" class="v-tab v-tab--active white primaryDark--text px-10" id="login" aria-label="tab" value="0" style="border-top-left-radius: 8px; border-top-right-radius: 8px;"> Login </div><div tabindex="0" aria-selected="false" role="tab" class="v-tab transparent white--text px-10" id="apply" aria-label="tab" value="0" style="border-top-left-radius: 8px; border-top-right-radius: 8px;">
+     Apply </div></div></div><div class="v-slide-group__next v-slide-group__next--disabled"><!----></div></div></div></div></div></div>
+
+
+
+
+     outerHTML: <div class="d-flex flex-column pt-0 pb-0 mb-0 r-side col col-12" style="background-color: rgb(87, 67, 14); color: white; height: 25%; position: relative;"><div class="r-side-overlay pb-0 mb-0 d-flex flex-column" style="height: 100%;"><div class="text-center white--text" style="margin-top: 10%;"><h3>Federal University of Lafia</h3><p style="color: white !important;">Integrity, Innovation, Excellence</p></div><div class="mt-auto" style="width: 100%;"><div class="v-tabs v-tabs--centered v-tabs--icons-and-text theme--dark" style="color: white;"><div role="tablist" class="v-item-group theme--dark v-slide-group v-tabs-bar v-tabs-bar--is-mobile white--text transparent" data-booted="true" style="height: 40px;"><div class="v-slide-group__prev v-slide-group__prev--disabled"><!----></div><div class="v-slide-group__wrapper"><div class="v-slide-group__content v-tabs-bar__content"><div tabindex="0" aria-selected="true" role="tab" class="v-tab v-tab--active white primaryDark--text px-10" id="login" aria-label="tab" value="0" style="border-top-left-radius: 8px; border-top-right-radius: 8px;"> Login </div><div tabindex="0" aria-selected="false" role="tab" class="v-tab transparent white--text px-10" id="apply" aria-label="tab" value="0" style="border-top-left-radius: 8px; border-top-right-radius: 8px;"> Apply </div></div></div><div class="v-slide-group__next v-slide-group__next--disabled">
+        
+     <!----></div></div></div></div></div></div>
+
+
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Command Integration</title>
+</head>
+<body>
+    <button id="recordButton">Record Voice Command</button>
+    <script>
+        const recordButton = document.getElementById('recordButton');
+        let mediaRecorder;
+        let audioChunks = [];
+
+        recordButton.addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const formData = new FormData();
+                formData.append('audio', audioBlob);
+
+                fetch('/process_voice_command', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Voice Command:', data.voice_command);
+                    console.log('Target URL:', data.target_url);
+                    console.log('Description:', data.command_description);
+                });
+
+                audioChunks = [];
+            });
+
+            setTimeout(() => {
+                mediaRecorder.stop();
+            }, 3000); // Record for 3 seconds
+        });
+    </script>
+</body>
+</html>
+
+
+```
+
+This schema ensures that `student_id` is the unique identifier linking the `student` and `results` tables, establishing a clear relationship between the two.
+
+
+-- DROP TABLE IF EXISTS student;
+-- DROP TABLE IF EXISTS voice_commands;
+
+
+-- CREATE TABLE student (
+--   id INTEGER PRIMARY KEY AUTOINCREMENT,
+--   student_name TEXT UNIQUE NOT NULL,
+--   student_password TEXT NOT NULL,
+--   matric_number TEXT UNIQUE NOT NULL,
+--   student_level INTEGER NOT NULL,
+--   student_state TEXT NOT NULL,
+--   email TEXT UNIQUE NOT NULL,
+--   programme_type TEXT NOT NULL,
+--   department TEXT NOT NULL,
+--   local_government TEXT NOT NULL,
+--   phone_number TEXT UNIQUE NOT NULL,
+--   year_of_admission INTEGER NOT NULL,
+--   faculty TEXT NOT NULL,
+--   programme TEXT NOT NULL
+-- );
+
+
+
+-- CREATE TABLE voice_commands (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     voice_command TEXT NOT NULL,
+--     target_url TEXT NOT NULL,
+--     command_description TEXT NOT NULL,
+--     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+-- );

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+
+ <!-- block content -->
+         <div class="mt-2 da mb-2 ml-2 border border-gray-300">
+               <h2 class="da p-4 text-gray-700">Dashboard</h2>
+         </div>
+
+<!-- content section -->
+         <section class="flex justify-center min-h w-full">
+            <div class="w-[30%] m-2 max-w-sm p-4 bg-white text-gray-500 border shadow-lg rounded-lg sm:p-6 md:p-8" style="border: 1px solid #63490a; height: 50%;">
+               <!-- Profile Section -->
+               <div class="flex flex-col items-center pb-10">
+                   <img class="w-50 h-20 mb-3 border-4 border-white" src="{{ g.user['profile_image'] }}" alt="Profile Image"/>
+               </div>
+           
+               <!-- Display Form Section -->
+               <form class="space-y-6">
+                   <div>
+                       <label for="student_name" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Name:</label>
+                       <input type="text" name="student_name" id="student_name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_name'] }}" disabled />
+                   </div>
+                   <div>
+                       <label for="matric_number" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Matric number:</label>
+                       <input type="text" name="matric_number" id="matric_number" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['matric_number'] }}" disabled />
+                   </div>
+                   <div>
+                       <label for="student_level" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Level:</label>
+                       <input type="number" name="student_level" id="student_level" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_level'] }}" disabled />
+                   </div>
+               </form>
+           </div>
+           
+           <!-- second div -->
+           <div class="w-[35%] m-2 max-w-sm p-4 bg-white rounded-lg sm:p-6 md:p-8">
+
+            <section class="text-black w-full mb-6 rounded-lg" style="background-color: #daa323;">
+               <div class="p-4 mr-4">
+                  <h3 class="text-black">
+                     Current Session: Missing
+                  </h3>
+               </div>
+               <!-- Border line -->
+                  <div class="ml-4 mr-4 border" style="border-color:black;">
+                  </div>
+                  <!-- Border line -->
+                  <div class="p-4 mr-4">
+                     <h3 class="text-black">
+                        Current Semester:
+                     </h3>
+                  </div>
+            </section>
+
+    
+      
+            <form class="space-y-6 p-4 dark:bg-white rounded-lg">
+               <div>
+                  <label for="student_state" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">State:</label>
+                  <input type="text" name="student_state" id="student_state" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_state'] }}" disabled />
+              </div>
+               <div>
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Email:</label>
+                  <input type="email" name="email" id="email" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['email'] }}" disabled />
+              </div>
+      
+               <div>
+                  <label for="student_level" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Level:</label>
+                  <input type="number" name="student_level" id="student_level" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['student_level'] }}" disabled />
+              </div>
+               <div>
+                  <label for="programme_type" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Programme_type:</label>
+                  <input type="text" name="programme_type" id="programme_type" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['programme_type'] }}" disabled />
+              </div>
+              <div>
+               <label for="department" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Department:</label>
+               <input type="text" name="department" id="department" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['department'] }}" disabled />
+           </div>
+            </form>
+          </div>
+          <!-- Third -->
+          <div class="w-[35%] m-2 max-w-sm p-4 bg-white rounded-lg shadow-lg sm:p-6 md:p-8">
+            
+            <section class="text-black w-full mb-6 rounded-lg" style="background-color: #daa323; color: white;">
+               <form action="/predict" method="POST" style="background-color: black; color: aliceblue;">
+                  <label for="user_input">Enter your query:</label>
+                  <input type="text" id="user_input" name="user_input" required>
+                  <button type="submit">Submit</button>
+              </form>
+               <div class="p-4 mr-4">
+                  <h3 class="text-black">
+                     Payment status
+                  </h3>
+               </div>
+               <!-- Border line -->
+                  <div class="border border-black ml-4 mr-4">
+                  </div>
+                  <!-- Border line -->
+                  <div class="p-4 mr-4">
+                     <h3 class="text-black"><span class="text-green-700">Paid:</span> 2019/2020</h3>
+                     <h3 class="text-black"><span class="text-green-700">Paid:</span> 2019/2020</h3>
+                     <h3 class="text-black"><span class="text-green-700">Paid:</span> 2019/2020</h3>
+                     <h3 class="text-black"><span class="text-green-700">Paid:</span> 2019/2020</h3>
+                  </div>
+            </section>
+      
+            <form class="space-y-6 p-4 dark:bg-white rounded-lg">
+               <div>
+                  <label for="local_government" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Local Government:</label>
+                  <input type="text" name="local_government" id="local_government" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['local_government'] }}" disabled />
+              </div>
+              <div>
+                  <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Phone Number:</label>
+                  <input type="text" name="phone_number" id="phone_number" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['phone_number'] }}" disabled />
+              </div>
+              <div>
+                  <label for="year_of_admission" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Year of Admission:</label>
+                  <input type="text" name="year_of_admission" id="year_of_admission" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['year_of_admission'] }}" disabled />
+              </div>
+              <div>
+                  <label for="faculty" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Faculty:</label>
+                  <input type="text" name="faculty" id="faculty" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['faculty'] }}" disabled />
+              </div>
+              <div>
+                  <label for="programme" class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-600">Programme:</label>
+                  <input type="text" name="programme" id="programme" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-white dark:border-gray-300 dark:placeholder-gray-300 dark:text-gray-900" placeholder="{{ g.user['programme'] }}" disabled />
+              </div>
+            </form>
+          </div>
+         </section>
+
+
+<!-- end of block content -->
+    
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+ 
+

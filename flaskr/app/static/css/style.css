@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure this is the first rule in your styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Nav and other content styles can go here */
+
+.mic-container {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    z-index: 1000; /* Ensures it stays on top */
+}
+
+#recordBtn {
+    background-color:  #392803;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 10px;
+    font-size: 24px;
+    box-shadow: 0px 4px 6px rgba(0.1, 0.1, 0.1, 0.1);
+    cursor: pointer;
+}
+
+#recordBtn .material-symbols-outlined {
+    font-size: 36px;
+}
+
+#recordBtn:hover {
+    background-color: white;
+    color:  #392803;
+}
+
+#audioPlayback {
+    display: none;
+}
+main{
+    /* background-color: #e91e63; */
+    width: 100%;
+    height: 100vh; /* 100% of the viewport height */}
+main .dashboard{
+    background-color: white;
+    height: inherit;
+    width: 20%;
+    float: left;
+}
+
+main .smallnav{
+    background-color: white; /* Default background color */
+    float: right;
+    height: 7%;
+    /* width: 100%; */
+    display: flex;
+    /* justify-content: right; */
+    padding: 10px 10px;
+    list-style: none;
+    color: black;
+}
+main .smallnav a .logout-btn{
+    color: rgb(151, 15, 15);
+    margin: 0 3px;
+    font-size: 1.6em;
+    }
+/* main .smallnav div{ */
+    /* color: #000; */
+    /* justify-self: left; */
+    /* } */
+.btn{
+    /* color: #000; */
+    
+    float: left;
+    /* left: 0%; */
+    /* margin-right: ; */
+}
+
+main .smallnav p{
+    margin-top: 2px;
+    }
+main .smallnav li .id{
+    color: white;
+    }
+main .form{
+    background-color: red;
+    height: 95%;
+    float: right;
+    width: 80%;
+}
+.da{
+    margin-top: 5%;
+}
+
+  
+/* settings form styles */
+    .form-container {
+      background-color: #fff;
+      /* padding: 20px; */
+      border-radius: 8px;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      /* border-radius: 4px; */
+      font-size: 16px;
+    }
+
+    .form-container input:disabled {
+      color: gray;
+    }
+
+    .form-container input:not(:disabled) {
+      color: black;
+    }
+
+    
+    .form-container .save-button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* .form-container .edit-button {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .form-container .edit-button:hover {
+      background-color: #0056b3;
+    } */
+
+    .form-container .save-button {
+      background-color: #fbc23d;
+      color: #fff;
+      transition: ease 0.3s;
+    }
+
+    .form-container .save-button:hover {
+      background-color: #543d07;
+      transition: ease 0.3s;
+
+    }

@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Fees{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="mt-4 da border mb-2" style="border-bottom: 1px solid #444; padding: 5px 5px;">
+  
+  <div style="float: left;">
+    <h2 class="da p-4 text-gray-700 font-bold" style="float: left;">Fees</h2>
+  </div>
+  <div class="relative" style="float: right;">
+    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center py-2 px-3 text-black border-b-2 border-transparent dark:text-black" style="border-color: #b8860b;">
+      Select session
+      <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+    </button>
+    <!-- Dropdown menu -->
+    <div id="dropdownNavbar" class="absolute mt-2 z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 right-0 top-full dark:bg-white dark:divide-gray-600" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+      <ul class="py-2 text-sm text-black" aria-labelledby="dropdownNavbarLink">
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2019/2020</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2020/2021</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2021/2022</a>
+        </li>
+        <li>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-200 dark:hover:text-white">2022/2023</a>
+        </li>
+      </ul>
+    </div>
+    <!-- end of menu -->
+  </div>
+  <!-- end of button -->
+</div>
+
+<section class="mt-[12%] flex">
+  <!-- first part -->
+  
+<div class="w-[35%] mr-4 ml-4 max-w-md bg-white border rounded-lg shadow" style="border-color: #b8860b; height: 50%;">
+  <div class="p-6 items-center mb-4 border-b" style="border-color: #b8860b;">
+      <h5 class="text-xl leading-none text-black dark:text-black">Information</h5>
+ </div>
+   
+<div class="h-6 rounded m-4 flex items-center justify-center" style="background-color: #b8860b;">
+<h3 class="font-bold">100%</h3>
+</div>
+<div class="h-6 rounded m-4 flex">
+<h3 class="font-bold">History</h3>
+</div>
+
+<ul role="list" class="p-4 text-black custom-divide">
+<li class="py-3 sm:py-4">
+  <h4>2/15/2024 - N22500</h4>
+</li>
+<li class="py-3 sm:py-4">
+  <h4>2/15/2024 - N22500</h4>
+</li>
+  <li class="py-3 sm:py-4">
+  <h4 class="text-white">hi</h4>
+</li>
+    <li class="py-3 sm:py-4 mt-10 rounded">
+      <h4 class="h-6 p-5 text-white rounded flex items-center justify-center" style="background-color: #b8860b;"> <a>Download Invoice</a>
+    </h4>
+</li>
+</ul>
+ 
+</div>
+
+
+<!-- second part -->
+
+
+<div class="w-[60%] bg-white border-2 rounded-lg shadow" style="border-color: #b8860b; padding-bottom:15%;">
+
+
+  <section class="p-4 border-b mb-10" style="border-color: #b8860b; padding-bottom: 5%;">
+    <ul role="list" class="text-black custom-divide">
+
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Name: </p>
+            <p class="text-sm">
+              {{ g.user['student_name'] }}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Matric: </p>
+            <p class="text-sm">
+              {{ g.user['matric_number'] }}
+            </p>
+          </div>
+        </div>
+
+      </li>
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Faculty: </p>
+            <p class="text-sm">
+              {{ g.user['faculty'] }}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Department : </p>
+            <p class="text-sm">
+              {{ g.user['department'] }}
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Programme: </p>
+            <p class="text-sm">
+              {{ g.user['programme'] }}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Level: </p>
+            <p class="text-sm">
+              {{ g.user['student_level'] }}
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Session: </p>
+            <p class="text-sm">2022/2023
+              <!--                          {{ g.user['session'] }} -->
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Date: </p>
+            <p class="text-sm" id="date-time">
+
+            </p>
+          </div>
+        </div>
+      </li>
+      </li>
+
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Programme: </p>
+            <p class="text-sm">
+              {{ g.user['programme'] }}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Level: </p>
+            <p class="text-sm">
+              {{ g.user['student_level'] }}
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li class="py-3 sm:py-4 text-black">
+        <div class="flex items-center">
+          <div class="flex-1 min-w-0 ms-4 flex items-center">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Email: </p>
+            <p class="text-sm">2022/2023
+              {{ g.user['email'] }}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center text-base">
+            <p class="text-sm font-medium text-base font-semibold mr-6"> Invoice: </p>
+            <p class="text-sm" id="unique-sequence">
+
+            </p>
+          </div>
+        </div>
+      </li>
+      <!--     <div class="h-0 w-full" style="border: 1px solid red">
+    <li class="py-3 sm:py-4 mt-10 rounded">
+      <h4 class="h-6 p-5 text-white rounded flex items-center justify-center" style="background-color: #b8860b;"> <a>Download Invoice</a>
+      </h4>
+    </li> -->
+    </ul>
+  </section>
+<section>
+
+      <div class="relative m-4 corner-boxes" style="border: 1px solid  #b8860b;">
+    <div class="text-white relative z-10">
+      <table class="min-w-full bg-white text-black table-fixed">
+        <thead class="border-b">
+          <tr>
+            <th class="w-1/10 text-left">S/N</th>
+            <th class="w-4/5 text-left">Title</th>
+            <th class="w-1/10 text-left">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="">
+          <tr>
+            <td class="w-1/10 text-left py-2">1</td>
+            <td class="w-4/5 text-left py-2">Undergraduate School Fees</td>
+            <td class="w-1/10 text-left py-2">45000</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- Corner boxes -->
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+  </div>
+
+<div class="mr-4 mt-10">
+  <h4 class="semi-bold text-right">
+    Total: N45,000
+  </h4>
+</div>
+</section>
+
+</div>
+
+</section>
+
+<!-- <div class="flex items-center p-4 m-4 mb-4 rounded-lg" role="alert" style="background-color: #b8860b; color: white; margin-top: 9rem;">
+  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" style="color: white;">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+  <span class="sr-only">Info</span>
+  <div>
+    <span class="font-medium">Welcome!</span> Please select a session to make payment to.
+  </div>
+</div> -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.getElementById('dropdownNavbarLink');
+    const dropdownMenu = document.getElementById('dropdownNavbar');
+
+    dropdownToggle.addEventListener('click', function (event) {
+      event.stopPropagation();
+      dropdownMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
+    });
+
+    document.addEventListener('click', function () {
+      dropdownMenu.classList.add('hidden'); // Close dropdown on click outside
+    });
+
+    dropdownMenu.addEventListener('click', function (event) {
+      event.stopPropagation(); // Prevent dropdown from closing on menu click
+    });
+  });
+</script>
+
+
+{% endblock %}
+
