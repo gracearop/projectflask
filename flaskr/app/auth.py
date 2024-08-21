@@ -9,20 +9,20 @@ from app.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-def process_login(matric_number, student_password):
-    db = get_db()
-    student = db.execute(
-        'SELECT * FROM student WHERE matric_number = ?', (matric_number,)
-    ).fetchone()
+# def process_login(matric_number, student_password):
+#     db = get_db()
+#     student = db.execute(
+#         'SELECT * FROM student WHERE matric_number = ?', (matric_number,)
+#     ).fetchone()
 
-    if student is None:
-        return False
-    elif not check_password_hash(student['student_password'], student_password):
-        return False
+#     if student is None:
+#         return False
+#     elif not check_password_hash(student['student_password'], student_password):
+#         return False
 
-    session.clear()
-    session['user_id'] = student['student_id']
-    return True
+#     session.clear()
+#     session['user_id'] = student['student_id']
+#     return True
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():

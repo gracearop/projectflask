@@ -318,3 +318,39 @@
 
 # for segment in segments:
 #     print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
+            # try:
+            #     if transcribed_text.lower().startswith("login"):
+            #         # Process the transcribed text to extract matric number, password, and page name
+            #         try:
+            #             matric_number, password, page_name = process_transcribed_text(transcribed_text)
+            #         except ValueError as e:
+            #             return jsonify({'error': str(e)}), 400
+
+            #         # Map page name to route
+            #         label_to_route = {
+            #             '__label__std': 'index',
+            #             '__label__biodata': 'biodata',
+            #             '__label__fees': 'fees',
+            #             '__label__otherfees': 'otherFees',
+            #             '__label__coursereg': 'courseReg',
+            #             '__label__results': 'results',
+            #             '__label__accommodation': 'accommodation',
+            #             '__label__cop': 'COP',
+            #             '__label__docs': 'myDocuments',
+            #             '__label__settings': 'settings',
+            #         }
+
+            #         route_name = label_to_route.get(page_name, 'index')  # Default to 'index' if page not found
+
+            #         # Perform login by calling the login function directly or sending a request
+            #         login_successful = process_login(matric_number, password)
+            #         if login_successful:
+            #             return redirect(url_for(f'main.{route_name}'))
+            #         else:
+            #             return jsonify({'error': 'Login failed. Incorrect matric number or password.'}), 400
+
+            #     else:
+            #         return jsonify({'error': 'Login command is incomplete.'}), 400
+            # except Exception as e:
+            #     print(f"Error during processing: {e}")
+            #     return jsonify({'error': 'An error occurred during processing'}), 500
