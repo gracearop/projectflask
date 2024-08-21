@@ -54,24 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
     async function uploadAudio(audioBlob) {
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.mp3');
-
+    
         try {
             const response = await fetch('/upload_audio', {
                 method: 'POST',
                 body: formData
             });
-
-            const data = await response.json();
-            if (response.ok) {
-                console.log('File uploaded successfully:', data.message);
-                console.log('Predicted Intent:', data.predicted_intent);
+    
+            // If the response was redirected
+            if (response.redirected) {
+                window.location.href = response.url; // Manually handle the redirect
             } else {
-                console.error('Error uploading file:', data.error);
+                const data = await response.json();
+                if (response.ok) {
+                    console.log('File uploaded successfully:', data.message);
+                    console.log('Predicted Intent:', data.predicted_intent);
+                } else {
+                    console.error('Error uploading file:', data.error);
+                }
             }
         } catch (error) {
             console.error('Error uploading file:', error);
         }
     }
+    
     
     // Other code remains the same...
 });

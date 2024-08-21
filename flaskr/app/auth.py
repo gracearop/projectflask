@@ -1,13 +1,28 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, jsonify, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 # from flaskr.app import routes
 from app.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+def process_login(matric_number, student_password):
+    db = get_db()
+    student = db.execute(
+        'SELECT * FROM student WHERE matric_number = ?', (matric_number,)
+    ).fetchone()
+
+    if student is None:
+        return False
+    elif not check_password_hash(student['student_password'], student_password):
+        return False
+
+    session.clear()
+    session['user_id'] = student['student_id']
+    return True
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -97,6 +112,47 @@ def login():
 
     return render_template('auth/login.html')
 
+# def process_login(matric_number, student_password, label):
+#     db = get_db()
+#     error = None
+#     student = db.execute(
+#         'SELECT * FROM student WHERE matric_number = ?', (matric_number,)
+#     ).fetchone()
+
+#     if student is None:
+#         error = 'Incorrect matric number.'
+#     elif not check_password_hash(student['student_password'], student_password):
+#         error = 'Incorrect password.'
+
+#     if error is None:
+#         session.clear()
+#         session['user_id'] = student['student_id']
+
+#         # Mapping dictionary for post-login redirect
+#         label_to_route = {
+#             '__label__std': 'index',
+#             '__label__biodata': 'biodata',
+#             '__label__fees': 'fees',
+#             '__label__otherfees': 'otherFees',
+#             '__label__coursereg': 'courseReg',
+#             '__label__results': 'results',
+#             '__label__accommodation': 'accommodation',
+#             '__label__cop': 'COP',
+#             '__label__docs': 'myDocuments',
+#             '__label__settings': 'settings',
+#         }
+
+#         route_name = label_to_route.get(label, None)
+#         if not route_name:
+#             return jsonify({'error': 'No matching route for label'}), 400
+
+#         route_url = url_for(f'main.{route_name}')
+#         return redirect(route_url)
+
+#     flash(error)
+#     return render_template('auth/login.html')
+
+
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -113,4 +169,5 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('auth.login'))
+
 

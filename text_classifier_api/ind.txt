@@ -1,0 +1,240 @@
+I want to make a fee payment. - fees
+How do I pay my school fees? - fees
+I need to settle my tuition fees. - fees
+I want to clear my outstanding fees. - fees
+I need to make a payment towards my school fees. - fees
+How can I pay my school dues? - fees
+I need to process my fee payment. - fees
+I want to finalize my fee payment. - fees
+I want to make a full payment of my fees. - fees
+I need to settle my outstanding balance. - fees
+How do I pay my tuition? - fees
+I need to make a payment for my tuition. - fees
+I want to clear my tuition fees. - fees
+I need to pay my course fees. - fees
+How do I pay my school charges? - fees
+I want to fulfill my fee obligations. - fees
+I need to settle my academic dues. - fees
+I want to make a complete fee payment. - fees
+How do I pay my student fees? - fees
+I need to clear my outstanding school charges. - fees
+I want to pay for late registration. - otherFees
+How much is the late fee for course registration? - otherFees
+I need to pay the extra charge for mis dev. - otherFees
+What are the extra charges for hostel accommodation? - otherFees
+I want to clear my extra fee for portal charge. - otherFees
+How do I pay for nuga? - otherFees
+I need to pay the extra charges for turn it in. - otherFees
+What is the amount for faculty charge? - otherFees
+I want to settle the extra fees on my account. - otherFees
+How do I pay the additional charges for matriculation? - otherFees
+I need to clear the outstanding extra fees. - otherFees
+What are the extra charges for graduation? - otherFees
+I want to pay the additional fee for departmental registration. - otherFees
+How much is the extra fee for late library fine? - otherFees
+I need to settle the extra charges for retaking a course. - otherFees
+What are the additional fees for environmental management? - otherFees
+I want to pay the extra fee for graduation gown hire. - otherFees
+How do I pay the extra charges for esp charge? - otherFees
+I need to clear the outstanding extra fees for ID card replacement. - otherFees
+What are the extra fees for cbt charge? - otherFees
+I want to add another course to my registration. - courseReg
+How do I drop a course and add another? - courseReg
+I need to change my course load for the semester. - courseReg
+I want to swap between two courses. - courseReg
+I need to add a course to my timetable. - courseReg
+How do I register for a new elective course? - courseReg
+I want to withdraw from a course and add another. - courseReg
+I need to change my course selection for next semester. - courseReg
+I want to add a practical course to my curriculum. - courseReg
+How do I modify my course registration for the upcoming semester? - courseReg
+I need to add a compulsory course to my registration. - courseReg
+I want to drop an elective course and add another. - courseReg
+How do I change my course load for the next semester? - courseReg
+I want to swap between two elective courses. - courseReg
+I need to add a course to my timetable for next semester. - courseReg
+How do I register for a new course for the next semester? - courseReg
+I want to withdraw from a course and add another for next semester. - courseReg
+I need to change my course selection for the upcoming academic year. - courseReg
+I want to add a practical course to my curriculum for next semester. - courseReg
+How do I modify my course registration for the upcoming academic year? - courseReg
+I want to update my passport information. - biodata
+How do I change my address on the student portal? - biodata
+I need to update my next of kin details. - biodata
+I want to change my phone number on the system. - biodata
+How do I update my email address? - biodata
+I need to correct my date of birth on the portal. - biodata
+I want to change my gender on the system. - biodata
+How do I update my nationality on the portal? - biodata
+I need to change my marital status. - biodata
+I want to update my emergency contact information. - biodata
+How do I change my religion on the portal? - biodata
+I need to update my disability status. - biodata
+I want to change my blood group on the system. - biodata
+How do I update my home address? - biodata
+I need to change my permanent address. - biodata
+I want to update my state of origin. - biodata
+How do I change my local government area? - biodata
+I need to update my country of origin. - biodata
+I want to change my visa status. - biodata
+How do I update my passport number? - biodata
+I want to upload my admission letter. - myDocuments
+How do I submit my admission letter? - myDocuments
+I need to upload my letter of admission. - myDocuments
+I want to upload my acceptance letter. - myDocuments
+How do I attach my admission letter? - myDocuments
+I want to upload my screening fee invoice. - myDocuments
+How do I submit my screening fee receipt? - myDocuments
+I need to upload my fee payment proof. - myDocuments
+Can I upload my screening fee slip? - myDocuments
+I want to upload evidence of screening fee payment. - myDocuments
+How do I submit proof of fee payment? - myDocuments
+I need to upload my bank teller for screening fee. - myDocuments
+Can I upload my screening fee payment slip? - myDocuments
+How do I attach proof of fee payment? - myDocuments
+How do I submit my transcript request? - myDocuments
+I need to upload the transcript request form. - myDocuments
+Can I upload my transcript request now? - myDocuments
+How do I attach my transcript request form? - myDocuments
+I want to submit a transcript request. - myDocuments
+How do I request a transcript? - myDocuments
+I want to check my exam results. - results
+How do I see my grades? - results
+What is my CGPA? - results
+I want to know my academic performance. - results
+Show me my results. - results
+What is my GPA? - results
+I want to see my exam scores. - results
+Can you tell me my GPA? - results
+I need to know if I passed my exams. - results
+What is my standing in class? - results
+I want to check my result for this semester. - results
+How do I access my exam results? - results
+What is my overall GPA? - results
+I need to see my course results. - results
+Can you show me my result slip? - results
+What is my grade point average? - results
+I want to know my academic standing. - results
+How do I check my performance in a course? - results
+What is my result for the last exam? - results
+Can I see my detailed results? - results
+I want to apply for hostel accommodation. - accommodation
+How do I apply for a hostel room? - accommodation
+I need a hostel space. - accommodation
+I want to apply for on-campus accommodation. - accommodation
+Can I apply for a hostel? - accommodation
+How do I secure a hostel room? - accommodation
+I need accommodation on campus. - accommodation
+I want to apply for a hostel place. - accommodation
+I need a hostel room. - accommodation
+How can I get a hostel space? - accommodation
+I want to change my hostel room. - accommodation
+How do I apply for a different hostel? - accommodation
+I need to move to another hostel. - accommodation
+I want to apply for a single room hostel. - accommodation
+Can I change my hostel room type? - accommodation
+How do I apply for a hostel upgrade? - accommodation
+I need to request a hostel room change. - accommodation
+I want to apply for a hostel transfer. - accommodation
+How do I apply for hostel cancellation? - accommodation
+I need to vacate my hostel room. - accommodation
+I want to change my course of study. - changeOfProgramme
+How do I change my program? - changeOfProgramme
+I need to switch my course. - changeOfProgramme
+I want to transfer to another department. - changeOfProgramme
+Can I change my major? - changeOfProgramme
+How do I apply for a change of program? - changeOfProgramme
+I need to switch my faculty. - changeOfProgramme
+I want to change my course of study to another. - changeOfProgramme
+How do I transfer to a different department? - changeOfProgramme
+I need to change my specialization. - changeOfProgramme
+I want to apply for a program change. - changeOfProgramme
+How do I switch my course of study? - changeOfProgramme
+I need to change my major to another. - changeOfProgramme
+I want to transfer to a different faculty. - changeOfProgramme
+Can I change my department? - changeOfProgramme
+How do I switch my course? - changeOfProgramme
+I need to change my program of study. - changeOfProgramme
+I want to apply for a different program. - changeOfProgramme
+How do I transfer to a new program? - changeOfProgramme
+I need to change my course of specialization. changeOfProgramme
+I want to change my phone number. - settings
+How do I update my security settings? - settings
+I need to modify my account settings. - settings
+I want to change my user preferences. - settings
+How do I edit my profile information? - settings
+I need to update my personal details on my profile. - settings
+I want to change my notification settings. - settings
+How do I modify my privacy settings? - settings
+I need to update my password and security questions. - settings
+I want to change my language preferences. - settings
+How do I edit my display settings? - settings
+I need to update my contact information on my profile. - settings
+I want to change my email address on my profile. - settings
+How do I modify my phone number on my profile? - settings
+I need to update my email on my profile. - settings
+I want to change my password on my profile. - settings
+How do I edit my phone number on my profile? - settings
+I need to update my password on my profile. - settings
+I want to change my emergency contact information on my profile. - settings
+How do I modify my profile visibility settings? - settings
+I want to log out. - logout
+How do I log out? - logout
+I need to log out of my account. - logout
+I want to exit the system. - logout
+Can I log out now? - logout
+How do I sign out? - logout
+I need to end my session. - logout
+I want to close my account session. - logout
+Can I log out of the portal? - logout
+How do I exit the system? - logout
+I want to end my session. - logout
+Can I log out of my profile? - logout
+I need to close my account. - logout
+I want to sign out of the system. - logout
+How do I log out of the website? - logout
+I need to end my session. - logout
+I want to exit the portal. - logout
+Can I log out of my profile? - logout
+How do I close my account session? - logout
+I need to end my session. - logout
+I want to log in. - login_user
+How do I log in? - login_user
+I need to login to my account. - login_user
+I want to access my account. - login_user
+Can I log in now? - login_user
+How do I sign in? - login_user
+I need to enter my credentials. - login_user
+I want to access my profile. - login_user
+Can I log in to my account? - login_user
+How do I enter the system? - login_user
+I want to access the portal. - login_user
+Can I log in to my profile? - login_user
+I need to enter my username and password. - login_user
+I want to sign in to my account. - login_user
+How do I access the system? - login_user
+I need to log in to the portal. - login_user
+I want to enter my credentials. - login_user
+Can I log in to the website? - login_user
+How do I sign in to the system? - login_user
+I need to access my user account. - login_user
+I want to open my dashboard. - index
+How do I access my dashboard? - index
+I need to open my student portal. - index
+I want to see my dashboard. - index
+Can I open my student portal now? - index
+How do I access my student dashboard? - index
+I need to open my portal. - index
+I want to see my dashboard information. - index
+Can I access my student account overview? - index
+How do I open my profile overview? - index
+I want to see my dashboard details. - index
+Can I access my student information summary? - index
+I need to open my account summary. - index
+I want to see my dashboard page. - index
+How do I access my student portal homepage? - index
+I need to open my main dashboard. - index
+I want to see my dashboard summary. - index
+Can I access my student information overview page? - index
+How do I open my portal homepage? - index
+I need to see my dashboard details. - index

@@ -1,0 +1,200 @@
+__label__intent text
+__label__fees i want to make a fee payment . 
+__label__fees how do i pay my school fees ? 
+__label__fees i need to settle my tuition fees . 
+__label__fees i want to clear my outstanding fees . 
+__label__fees i need to make a payment towards my school fees . 
+__label__fees how can i pay my school dues ? 
+__label__fees i need to process my fee payment . 
+__label__fees i want to finalize my fee payment . 
+__label__fees i want to make a full payment of my fees . 
+__label__fees i need to settle my outstanding balance . 
+__label__fees how do i pay my tuition ? 
+__label__fees i need to make a payment for my tuition . 
+__label__fees i want to clear my tuition fees . 
+__label__fees i need to pay my course fees . 
+__label__fees how do i pay my school charges ? 
+__label__fees i want to fulfill my fee obligations . 
+__label__fees i need to settle my academic dues . 
+__label__fees i want to make a complete fee payment . 
+__label__fees how do i pay my student fees ? 
+__label__fees i need to clear my outstanding school charges . 
+__label__otherfees i want to pay for late registration . 
+__label__otherfees how much is the payment for course registration ? 
+__label__otherfees i need to pay the extra charge for mis dev . 
+__label__otherfees what are the extra charges for hostel accommodation ? 
+__label__otherfees i want to clear my extra fee for portal charge . 
+__label__otherfees how do i pay for nuga ? 
+__label__otherfees i need to pay the extra charges for turn it in . 
+__label__otherfees what is the amount for faculty charge ? 
+__label__otherfees i want to settle the extra fees on my account . 
+__label__otherfees how do i pay the additional charges for matriculation ? 
+__label__otherfees i need to clear the outstanding extra fees . 
+__label__otherfees what are the extra charges for graduation ? 
+__label__otherfees i want to pay the additional fee for departmental registration . 
+__label__otherfees how much is the extra fee for late library fine ? 
+__label__otherfees i need to settle the extra charges for retaking a course . 
+__label__otherfees what are the additional fees for environmental management ? 
+__label__otherfees i want to pay the extra fee for graduation gown hire . 
+__label__otherfees how do i pay the extra charges for esp charge ? 
+__label__otherfees i need to clear the outstanding extra fees for id card replacement . 
+__label__otherfees what are the extra fees for cbt charge ? 
+__label__coursereg i want to add another course to my registration . 
+__label__coursereg how do i drop a course and add another ? 
+__label__coursereg i need to change my course load for the semester . 
+__label__coursereg i want to swap between two courses . 
+__label__coursereg i need to add a course to my timetable . 
+__label__coursereg how do i register for a new elective course ? 
+__label__coursereg i want to withdraw from a course and add another . 
+__label__coursereg i need to change my course selection for next semester . 
+__label__coursereg i want to add a practical course to my curriculum . 
+__label__coursereg how do i modify my course registration for the upcoming semester ? 
+__label__coursereg i need to add a compulsory course to my registration . 
+__label__coursereg i want to drop an elective course and add another . 
+__label__coursereg how do i change my course load for the next semester ? 
+__label__coursereg i want to swap between two elective courses . 
+__label__coursereg i need to add a course to my timetable for next semester . 
+__label__coursereg how do i register for a new course for the next semester ? 
+__label__coursereg i want to withdraw from a course and add another for next semester . 
+__label__coursereg i need to change my course selection for the upcoming academic year . 
+__label__coursereg i want to add a practical course to my curriculum for next semester . 
+__label__coursereg how do i modify my course registration for the upcoming academic year ? 
+__label__biodata i want to update my passport information . 
+__label__biodata how do i change my address on the student portal ? 
+__label__biodata i need to update my next of kin details . 
+__label__biodata i want to change my phone number on the system . 
+__label__biodata how do i update my email address ? 
+__label__biodata i need to correct my date of birth on the portal . 
+__label__biodata i want to change my gender on the system . 
+__label__biodata how do i update my nationality on the portal ? 
+__label__biodata i need to change my marital status . 
+__label__biodata i want to update my emergency contact information . 
+__label__biodata how do i change my religion on the portal ? 
+__label__biodata i need to update my disability status . 
+__label__biodata i want to change my blood group on the system . 
+__label__biodata how do i update my home address ? 
+__label__biodata i need to change my permanent address . 
+__label__biodata i want to update my state of origin . 
+__label__biodata how do i change my local government area ? 
+__label__biodata i need to update my country of origin . 
+__label__biodata i want to change my visa status . 
+__label__biodata how do i update my passport number ? 
+__label__mydocuments i want to upload my admission letter . 
+__label__mydocuments how do i submit my admission letter ? 
+__label__mydocuments i need to upload my letter of admission . 
+__label__mydocuments i want to upload my acceptance letter . 
+__label__mydocuments how do i attach my admission letter ? 
+__label__mydocuments i want to upload my screening fee invoice . 
+__label__mydocuments how do i submit my screening fee receipt ? 
+__label__mydocuments i need to upload my fee payment proof . 
+__label__mydocuments can i upload my screening fee slip ? 
+__label__mydocuments i want to upload evidence of screening fee payment . 
+__label__mydocuments how do i submit proof of fee payment ? 
+__label__mydocuments i need to upload my bank teller for screening fee . 
+__label__mydocuments can i upload my screening fee payment slip ? 
+__label__mydocuments how do i attach proof of fee payment ? 
+__label__mydocuments how do i submit my transcript request ? 
+__label__mydocuments i need to upload the transcript request form . 
+__label__mydocuments can i upload my transcript request now ? 
+__label__mydocuments how do i attach my transcript request form ? 
+__label__mydocuments i want to submit a transcript request . 
+__label__mydocuments how do i request a transcript ? 
+__label__results i want to check my exam results . 
+__label__results how do i see my grades ? 
+__label__results what is my cgpa ? 
+__label__results i want to know my academic performance . 
+__label__results show me my results . 
+__label__results what is my gpa ? 
+__label__results i want to see my exam scores . 
+__label__results can you tell me my gpa ? 
+__label__results i need to know if i passed my exams . 
+__label__results what is my standing in class ? 
+__label__results i want to check my result for this semester . 
+__label__results how do i access my exam results ? 
+__label__results what is my overall gpa ? 
+__label__results i need to see my course results . 
+__label__results can you show me my result slip ? 
+__label__results what is my grade point average ? 
+__label__results i want to know my academic standing . 
+__label__results how do i check my performance in a course ? 
+__label__results what is my result for the last exam ? 
+__label__results can i see my detailed results ? 
+__label__accommodation i want to apply for hostel accommodation . 
+__label__accommodation how do i apply for a hostel room ? 
+__label__accommodation i need a hostel space . 
+__label__accommodation i want to apply for on-campus accommodation . 
+__label__accommodation can i apply for a hostel ? 
+__label__accommodation how do i secure a hostel room ? 
+__label__accommodation i need accommodation on campus . 
+__label__accommodation i want to apply for a hostel place . 
+__label__accommodation i need a hostel room . 
+__label__accommodation how can i get a hostel space ? 
+__label__accommodation i want to change my hostel room . 
+__label__accommodation how do i apply for a different hostel ? 
+__label__accommodation i need to move to another hostel . 
+__label__accommodation i want to apply for a single room hostel . 
+__label__accommodation can i change my hostel room type ? 
+__label__accommodation how do i apply for a hostel upgrade ? 
+__label__accommodation i need to request a hostel room change . 
+__label__accommodation i want to apply for a hostel transfer . 
+__label__accommodation how do i apply for hostel cancellation ? 
+__label__accommodation i need to vacate my hostel room . 
+__label__changeofprogramme i want to change my course of study . 
+__label__changeofprogramme how do i change my program ? 
+__label__changeofprogramme i need to switch my course . 
+__label__changeofprogramme i want to transfer to another department . 
+__label__changeofprogramme can i change my major ? 
+__label__changeofprogramme how do i apply for a change of program ? 
+__label__changeofprogramme i need to switch my faculty . 
+__label__changeofprogramme i want to change my course of study to another . 
+__label__changeofprogramme how do i transfer to a different department ? 
+__label__changeofprogramme i need to change my specialization . 
+__label__changeofprogramme i want to apply for a program change . 
+__label__changeofprogramme how do i switch my course of study ? 
+__label__changeofprogramme i need to change my major to another . 
+__label__changeofprogramme i want to transfer to a different faculty . 
+__label__changeofprogramme can i change my department ? 
+__label__changeofprogramme how do i switch my course ? 
+__label__changeofprogramme i need to change my program of study . 
+__label__changeofprogramme i want to apply for a different program . 
+__label__changeofprogramme how do i transfer to a new program ? 
+__label__changeofprogramme i need to change my course of specialization . 
+__label__settings i want to change my phone number . 
+__label__settings how do i update my profile settings ? 
+__label__settings i need to modify my account settings . 
+__label__settings i want to change my user preferences . 
+__label__settings how do i edit my profile information ? 
+__label__settings i need to update my personal details on my profile . 
+__label__settings i want to change my notification settings . 
+__label__settings how do i modify my privacy settings ? 
+__label__settings i need to update my password and security questions . 
+__label__settings i want to change my language preferences . 
+__label__settings how do i edit my display settings ? 
+__label__settings i need to update my contact information on my profile . 
+__label__settings i want to change my email address on my profile . 
+__label__settings how do i modify my phone number on my profile ? 
+__label__settings i need to update my email on my profile . 
+__label__settings i want to change my password on my profile . 
+__label__settings how do i edit my phone number on my profile ? 
+__label__settings i need to update my password on my profile . 
+__label__settings i want to change my emergency contact information on my profile . 
+__label__settings how do i modify my profile visibility settings ? 
+__label__logout i want to log out . 
+__label__logout how do i log out ? 
+__label__logout i need to log out of my account . 
+__label__logout i want to exit the system . 
+__label__logout can i log out now ? 
+__label__logout how do i sign out ? 
+__label__logout i need to end my session . 
+__label__logout i want to close my account session . 
+__label__logout can i log out of the portal ? 
+__label__logout how do i exit the system ? 
+__label__logout i want to end my session . 
+__label__logout can i log out of my profile ? 
+__label__logout i need to close my account . 
+__label__logout i want to sign out of the system . 
+__label__logout how do i log out of the website ? 
+__label__logout i need to end my session . 
+__label__logout i want to exit the portal . 
+__label__logout can i log out of my profile ? 
+__label__logout how do i close my account session
