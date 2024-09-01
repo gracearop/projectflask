@@ -1,0 +1,108 @@
+import unittest
+from unittest.mock import patch
+from flask import Flask, jsonify
+from werkzeug.datastructures import MultiDict
+import os
+import sys
+
+# Adjust sys.path to include the directories where the modules are located
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../speech_to_text_api')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../text_classifier_api')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../flaskr')))
+
+from ... import create_app
+
+class UploadAudioTests(unittest.TestCase):
+
+    def setUp(self):
+        # Create a Flask app and configure it for testing
+        self.app = app.create_app()
+        self.app.config['UPLOAD_FOLDER'] = '/tmp'
+        self.client = self.app.test_client()
+
+        # Define a route to test the upload_audio function
+        @self.app.route('/upload', methods=['POST'])
+        def upload():
+            from flaskr.app.upload_audio import upload_audio
+            return upload_audio(self.app)
+
+    @patch('speech_to_text_api.transcribe_audio')
+    @patch('text_classifier_api.classify_text')
+    def test_upload_audio_success(self, mock_classify_text, mock_transcribe_audio):
+        # Mock the external functions
+        mock_transcribe_audio.return_value = "I want to pay for my CBT charges"
+        mock_classify_text.return_value = ('__label__otherfees', 0.9)
+
+        # Prepare a file to upload
+        data = MultiDict()
+        data['audio'] = (open('Recording0002.wav', 'rb'), 'Recording0002.wav')
+
+        # Make a POST request to the /upload route
+        response = self.client.post('/upload', content_type='multipart/form-data', data=data)
+
+        # Assert the response status and redirection
+        self.assertEqual(response.status_code, 302)  # Expecting redirection
+        self.assertIn('/students/otherFees', response.headers['Location'])
+
+    def test_upload_no_audio(self):
+        # Make a POST request without audio file
+        response = self.client.post('/upload', content_type='multipart/form-data')
+
+        # Assert the response status and error message
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json['error'], 'No audio file part')
+
+    @patch('speech_to_text_api.transcribe_audio')
+    def test_upload_empty_filename(self, mock_transcribe_audio):
+        # Mock the transcribe_audio function
+        mock_transcribe_audio.return_value = 'This is a test'
+
+        # Prepare a file with empty filename
+        data = MultiDict()
+        data['audio'] = (open('/dev/null', 'rb'), '')
+
+        # Make a POST request to the /upload route
+        response = self.client.post('/upload', content_type='multipart/form-data', data=data)
+
+        # Assert the response status and error message
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json['error'], 'No selected file')
+
+    @patch('speech_to_text_api.transcribe_audio')
+    @patch('text_classifier_api.classify_text')
+    def test_upload_transcription_error(self, mock_classify_text, mock_transcribe_audio):
+        # Mock the transcription to raise an exception
+        mock_transcribe_audio.side_effect = Exception('Transcription error')
+
+        # Prepare a file to upload
+        data = MultiDict()
+        data['audio'] = (open('Recording0002.wav', 'rb'), 'Recording0002.wav')
+
+        # Make a POST request to the /upload route
+        response = self.client.post('/upload', content_type='multipart/form-data', data=data)
+
+        # Assert the response status and error message
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.json['error'], 'Error during transcription')
+
+    @patch('speech_to_text_api.transcribe_audio')
+    @patch('text_classifier_api.classify_text')
+    def test_upload_classification_error(self, mock_classify_text, mock_transcribe_audio):
+        # Mock the transcription function
+        mock_transcribe_audio.return_value = "I want to pay for my CBT charges"
+        # Mock the classification to raise an exception
+        mock_classify_text.side_effect = Exception('Classification error')
+
+        # Prepare a file to upload
+        data = MultiDict()
+        data['audio'] = (open('Recording0002.wav', 'rb'), 'Recording0002.wav')
+
+        # Make a POST request to the /upload route
+        response = self.client.post('/upload', content_type='multipart/form-data', data=data)
+
+        # Assert the response status and error message
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.json['error'], 'Error during classification')
+
+if __name__ == '__main__':
+    unittest.main()

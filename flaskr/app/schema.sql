@@ -21,18 +21,36 @@ CREATE TABLE student (
   programme TEXT NOT NULL,
   profile_image BLOB -- Column to store the profile image
 );
+-- -- Create the voice_commands table to store voice commands
 
--- Create the voice_commands table to store voice commands
 CREATE TABLE voice_commands (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    voice_id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id INTEGER NOT NULL,
     voice_command TEXT NOT NULL,
-    target_url TEXT NOT NULL,
     command_description TEXT NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES student (student_id)
-
 );
+
+-- Create the voice_intents table to store intents related to voice commands
+CREATE TABLE classified_intent (
+    intent_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    voice_id INTEGER NOT NULL,
+    predicted_intent TEXT NOT NULL,
+    target_url TEXT NOT NULL,
+    FOREIGN KEY (voice_id) REFERENCES voice_commands (voice_id)
+);
+
+-- CREATE TABLE voice_commands (
+--     voice_id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     student_id INTEGER NOT NULL,
+--     voice_command TEXT NOT NULL,
+--     target_url TEXT NOT NULL,
+--     command_description TEXT NOT NULL,
+--     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (student_id) REFERENCES student (student_id)
+
+-- );
 
 -- Create the results table with student_id as a foreign key
 CREATE TABLE results (

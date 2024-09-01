@@ -9,7 +9,7 @@ class TestTranscribeAudio(unittest.TestCase):
     def setUp(self):
         self.model_size = "distil-large-v3"
         self.model = WhisperModel(self.model_size, device="cpu", compute_type="int8")
-        self.test_audio_path = "MLKDream_64kb.mp3"  # Replace with your test audio file path
+        self.test_audio_path = "tests/MLKDream_64kb.mp3"  # Replace with your test audio file path
 
     def test_transcribe_audio(self):
         transcription = transcribe_audio(self.test_audio_path)

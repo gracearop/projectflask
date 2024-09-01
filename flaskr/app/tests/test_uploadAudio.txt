@@ -3,13 +3,16 @@ from unittest.mock import patch, MagicMock
 import sys
 import os
 
-# Adjust sys.path to include the root directory
+# Ensure the root folder is in sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
-from app import transcribe_audio
-from app import classify_text
-from app import upload_audio
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../speech_to_text_api')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../text_classifier_api')))
 
-from app import create_app  # Now you can use the absolute import
+from speech_to_text_api import transcribe_audio
+from text_classifier_api import classify_text
+from flaskr.app import upload_audio, create_app
+
+from flask import Flask, request
 
 class TestUploadAudio(unittest.TestCase):
     def setUp(self):
@@ -35,8 +38,8 @@ class TestUploadAudio(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
             self.assertEqual(response.json, {'error': 'No selected file'})
 
-    @patch.object(speech_to_text_api, 'transcribe_audio')
-    @patch.object(text_classifier_api, 'classify_text')
+    @patch.object(transcribe_audio, 'transcribe_audio')
+    @patch.object(classify_text, 'classify_text')
     def test_successful_upload(self, mock_classify_text, mock_transcribe_audio):
         # Mock speech-to-text and text classification
         mock_transcribe_audio.return_value = "I want to pay for my CBT charges"
@@ -59,9 +62,6 @@ class TestUploadAudio(unittest.TestCase):
                 # Verify internal calls (optional)
                 mock_transcribe_audio.assert_called_once()
                 mock_classify_text.assert_called_once()
-
-    # Add tests for specific error scenarios during speech-to-text or text classification
-    # ...
 
 if __name__ == '__main__':
     unittest.main()
