@@ -45,68 +45,61 @@ def create_app(test_config=None):
 
 
     # Define the upload_audio route within create_app
-    @app.route('/upload_audio', methods=['POST'])
-    def upload_audio_route():
-        return upload_audio(app)
+    @app.route('/upload_audio', methods=['POST'])    
+    def upload_audio():
+        if 'audio' not in request.files:
+            return jsonify({'error': 'No audio file part'}), 400
 
-    # def upload_audio():
-    #     if 'audio' not in request.files:
-    #         return jsonify({'error': 'No audio file part'}), 400
+        file = request.files['audio']
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
 
-    #     file = request.files['audio']
-    #     if file.filename == '':
-    #         return jsonify({'error': 'No selected file'}), 400
+        if file:
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+            try:
+                file.save(filepath)
+                transcribed_text = speech_to_text_api.transcribe_audio(filepath)
+                print(f"Transcribed text: {transcribed_text}")  # Debugging output
+            except Exception as e:
+                print(f"Error during transcription: {e}")
+                return jsonify({'error': 'Error during transcription'}), 500
 
-    #     if file:
-    #         filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
-    #         try:
-    #             file.save(filepath)
-    #             transcribed_text = speech_to_text_api.transcribe_audio(filepath)
-    #             print(f"Transcribed text: {transcribed_text}")  # Debugging output
-    #         except Exception as e:
-    #             print(f"Error during transcription: {e}")
-    #             return jsonify({'error': 'Error during transcription'}), 500
+            try:
+                label, probability = text_classifier_api.classify_text(transcribed_text)
+                print(f"Classification result: Label={label}, Probability={probability}")  # Debugging output
 
-    #         try:
-    #             label, probability = text_classifier_api.classify_text(transcribed_text)
-    #             print(f"Classification result: Label={label}, Probability={probability}")  # Debugging output
+                label_to_route = {
+                    '__label__std': 'index',
+                    '__label__biodata': 'biodata',
+                    '__label__fees': 'fees',
+                    '__label__otherfees': 'otherFees',
+                    '__label__coursereg': 'courseReg',
+                    '__label__results': 'results',
+                    '__label__accommodation': 'accommodation',
+                    '__label__cop': 'COP',
+                    '__label__docs': 'myDocuments',
+                    '__label__settings': 'settings',
+                }
 
-    #             # Mapping dictionary
-    #             label_to_route = {
-    #                 '__label__std': 'index',
-    #                 '__label__biodata': 'biodata',
-    #                 '__label__fees': 'fees',
-    #                 '__label__otherfees': 'otherFees',
-    #                 '__label__coursereg': 'courseReg',
-    #                 '__label__results': 'results',
-    #                 '__label__accommodation': 'accommodation',
-    #                 '__label__cop': 'COP',
-    #                 '__label__docs': 'myDocuments',
-    #                 '__label__settings': 'settings',
-    #             }
+                route_name = label_to_route.get(label, None)
+                if not route_name:
+                    return jsonify({'error': 'No matching route for label'}), 400
 
-    #             # Get the route name
-    #             route_name = label_to_route.get(label, None)
-    #             if not route_name:
-    #                 return jsonify({'error': 'No matching route for label'}), 400
+                response = {
+                    'transcribaed_text': transcribed_text,
+                    'intent': label,
+                    'probability': probability
+                }
+                print(f"Response to be returned: {response}")  # Debugging output
 
-    #             response = {
-    #                 'transcribed_text': transcribed_text,
-    #                 'intent': label,
-    #                 'probability': probability
-    #             }
-    #             print(f"Response to be returned: {response}")  # Debugging output
+                route_url = url_for(f'main.{route_name}')
+                print(f"Generated URL for redirection: {route_url}")  # Debugging output
 
-    #             # Generate the URL for redirection
-    #             route_url = url_for(f'main.{route_name}')
-    #             print(f"Generated URL for redirection: {route_url}")  # Debugging output
+                return redirect(route_url)
 
-    #             # Redirect to the route
-    #             return redirect(route_url)
- 
-    #         except Exception as e:
-    #             print(f"Error during classification: {e}")
-    #             return jsonify({'error': 'Error during classification'}), 500
+            except Exception as e:
+                print(f"Error during classification: {e}")
+                return jsonify({'error': 'Error during classification'}), 500
 
         # Register Blueprints
     from . import db
