@@ -10,7 +10,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../text_classifier_api')))
 # from app.auth import process_login
 # from app.words_to_special_char import special_char_map
-from word2number import w2n
+# from word2number import w2n
+from flaskr.app.upload_audio import upload_audio
 import speech_to_text_api
 import text_classifier_api
 
